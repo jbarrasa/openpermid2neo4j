@@ -106,6 +106,15 @@ RETURN count(hpi) ", {limit : 25000}
 ) ;
 
 call apoc.periodic.commit("
+MATCH (:Resource)-[hpi:HOLDS_POSITION_IN]->(:Resource)
+WHERE NOT exists(hpi.from)
+WITH hpi LIMIT $limit
+SET hpi.from = coalesce(apoc.date.parse(hpi.ns0__from,'s','yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\''),0),
+      hpi.to = coalesce(apoc.date.parse(hpi.ns0__to,'s','yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\''),timestamp())
+RETURN COUNT(hpi) ", {limit : 25000}
+) ;
+
+call apoc.periodic.commit("
 MATCH (:ns3__Organization)-[:ns2__hasURL]->(url) 
 WHERE NOT 'URL' IN labels(url)
 WITH url LIMIT $limit

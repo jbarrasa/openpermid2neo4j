@@ -32,4 +32,5 @@ LOAD CSV WITH HEADERS from "file:///OpenPermID/countryInfo.txt" as row fieldterm
 MATCH (r:Resource { uri: "http://sws.geonames.org/" + row.geonameid + "/" } )
 SET r+= row, r:Country;
 
-CREATE INDEX ON :ns7__Person(`ns2__family-name`)
+CREATE INDEX ON :ns7__Person(`ns2__family-name`);
+CREATE INDEX ON :ns3__Organization(`ns2__organization-name`);

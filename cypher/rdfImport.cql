@@ -15,7 +15,7 @@ CREATE (n:NamespacePrefixDefinition {
   `http://permid.org/ontology/currency/`: "ns11",
   `http://www.omg.org/spec/EDMC-FIBO/BE/LegalEntities/CorporateBodies/`: "ns4",
   `http://permid.org/ontology/financial/`: "ns5"
-})
+});
 
 // Adapt paths to you example. Note that importRDF stored proc takes an absolute 
 // path while the LOAD CSV takes a path relative to the <neo4j_home>/import directory.
